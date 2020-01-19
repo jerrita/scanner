@@ -105,7 +105,11 @@ class PortScanner:
                     s.settimeout(timeout)
                     result_code = s.connect_ex((ip, port))
                     if result_code == 0:
-                        print(f'[OPEN] {port} -> {socket.getservbyport(port)}')
+                        try:
+                            name = socket.getservbyport(port)
+                        except Exception as e:
+                            name = e
+                        print(f'[OPEN] {port} -> {name}')
                 except Exception as e:
                     print(e)
                 finally:
