@@ -37,7 +37,7 @@ if __name__ == '__main__':
     parser.add_argument('-p', action='store_true', dest='port', help='Port scan mode')
     parser.add_argument('-a', action='store_true', dest='alive', help='Alive detection')
     parser.add_argument('-d', dest='domain', help='Select the domain or ip')
-    parser.add_argument('-m', dest='mode', default='50', help='Select the port_scan mode (0, 50, 100, 1000)')
+    parser.add_argument('-m', dest='mode', default='1000', help='Select the port_scan mode (0, 50, 100, 1000)')
     parser.add_argument('-n', dest='thread_num', default='100', help='Select the thread num')
     parser.add_argument('-c', dest='dic', help='Select the dictionary')
     res = parser.parse_args()

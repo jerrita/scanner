@@ -30,7 +30,7 @@ class Boomer(threading.Thread):
                             ips.append(j.address)
                 print(f'Find: {url} -> {" , ".join(ips)}')
                 self.find += 1
-            except dns.resolver.NXDOMAIN:
-                pass
             except dns.exception.Timeout:
                 self.timeout += 1
+            except Exception:
+                pass
