@@ -3,6 +3,7 @@ import queue
 import time
 from lib.PortScanner import PortScanner, get_port_lists
 from lib.DomainBoomer import Boomer
+import os
 
 
 def domain_boom(url, dic, thread_num):
@@ -34,10 +35,11 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-b', action='store_true', dest='boom', help='Booming subdomains')
     parser.add_argument('-p', action='store_true', dest='port', help='Port scan mode')
+    parser.add_argument('-a', action='store_true', dest='alive', help='Alive detection')
     parser.add_argument('-d', dest='domain', help='Select the domain or ip')
     parser.add_argument('-m', dest='mode', default='50', help='Select the port_scan mode (0, 50, 100, 1000)')
     parser.add_argument('-n', dest='thread_num', default='100', help='Select the thread num')
-    parser.add_argument('-dic', dest='dic', help='Select the dictionary')
+    parser.add_argument('-c', dest='dic', help='Select the dictionary')
     res = parser.parse_args()
     start = time.time()
 
@@ -65,6 +67,12 @@ if __name__ == '__main__':
         for thread in thread_list:
             thread.join()
         print(f'{len(port_list)} ports scanned.')
+
+    if res.alive:
+        if not res.domain:
+            exit('Missing domain or ip')
+        ans = os.popen(f'ping -c1 -w1 -t5 {res.domain}').read()
+        print(ans)
 
     end = time.time()
     print(f'[Use time] {end - start}')
