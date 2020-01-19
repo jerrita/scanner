@@ -86,7 +86,7 @@ def get_port_lists(top=50, start_port=1, end_port=65535):
 
 class PortScanner:
     class PortScan(threading.Thread):
-        def __init__(self, port_queue, ip, timeout=3):
+        def __init__(self, port_queue, ip, timeout=1):
             threading.Thread.__init__(self)
             self.port_queue = port_queue
             self.ip = ip

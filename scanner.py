@@ -35,7 +35,7 @@ if __name__ == '__main__':
     parser.add_argument('-b', action='store_true', dest='boom', help='Booming subdomains')
     parser.add_argument('-p', action='store_true', dest='port', help='Port scan mode')
     parser.add_argument('-d', dest='domain', help='Select the domain or ip')
-    parser.add_argument('-m', dest='mode', default='1000', help='Select the port_scan mode (0, 50, 100, 1000)')
+    parser.add_argument('-m', dest='mode', default='50', help='Select the port_scan mode (0, 50, 100, 1000)')
     parser.add_argument('-n', dest='thread_num', default='100', help='Select the thread num')
     parser.add_argument('-dic', dest='dic', help='Select the dictionary')
     res = parser.parse_args()
@@ -51,6 +51,7 @@ if __name__ == '__main__':
     if res.port:
         if not res.domain:
             exit('Missing ip')
+        print('Scanning...')
         port_scanner = PortScanner()
         port_list = get_port_lists(int(res.mode))
         port_queue = queue.Queue()

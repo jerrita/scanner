@@ -9,8 +9,8 @@ class Boomer(threading.Thread):
         self.domain = domain
         self.resolver = dns.resolver.Resolver()
         self.resolver.nameservers = ['119.29.29.29', '182.254.116.116', '114.114.115.115', '114.114.114.114']
-        self.resolver.timeout = 2
-        self.resolver.lifetime = 2
+        self.resolver.timeout = 1
+        self.resolver.lifetime = 1
         self.count = 0
         self.timeout = 0
         self.find = 0
