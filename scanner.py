@@ -3,7 +3,7 @@ import queue
 import time
 from lib.PortScanner import PortScanner, get_port_lists
 from lib.DomainBoomer import Boomer
-import os
+from lib.AliveDetector import AliveDetector
 
 
 def domain_boom(url, dic, thread_num):
@@ -68,11 +68,10 @@ if __name__ == '__main__':
             thread.join()
         print(f'{len(port_list)} ports scanned.')
 
-    if res.alive:
+    if res.alive and not res.boom:
         if not res.domain:
             exit('Missing domain or ip')
-        ans = os.popen(f'ping -c1 -w1 -t5 {res.domain}').read()
-        print(ans)
+        AliveDetector(res.domain)
 
     end = time.time()
     print(f'[Use time] {end - start}')
