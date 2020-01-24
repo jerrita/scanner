@@ -1,6 +1,7 @@
 import threading
 import dns.resolver
 
+# 多线程子域名爆破器，使用 queue 与 threading 实现
 
 class Boomer(threading.Thread):
     def __init__(self, sub_queue, domain):
