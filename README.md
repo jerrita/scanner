@@ -28,12 +28,22 @@ optional arguments:
 ```
 # Example
 Subdomain scan
-`scanner.py -bd cqupt.edu.cn -c small.txt`
+```
+scanner.py -bd cqupt.edu.cn -c small.txt
+```
 Port scan
-`scanner.py -pd 202.202.32.60`
+```
+scanner.py -pd 202.202.32.60
+```
 Alive detect
-`scanner.py -ad 202.202.32.60`
+```
+scanner.py -ad 202.202.32.60
+```
 Waf detect (through wafw00f and linux only)
-`scanner.py -w www.cqupt.edu.cn`
+```
+scanner.py -w www.cqupt.edu.cn
+```
 Sql inject detect (through sqlmap)
-`scanner.py -s http://43.247.91.228:84/Less-1/?id=1`
+```
+scanner.py -s http://43.247.91.228:84/Less-1/?id=1
+```
