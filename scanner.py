@@ -1,6 +1,7 @@
 import argparse
 import queue
 import time
+import os
 from lib.PortScanner import PortScanner, get_port_lists
 from lib.DomainBoomer import Boomer
 from lib.AliveDetector import AliveDetector
@@ -40,6 +41,7 @@ if __name__ == '__main__':
     parser.add_argument('-m', dest='mode', default='1000', help='Select the port_scan mode (0, 50, 100, 1000)')
     parser.add_argument('-n', dest='thread_num', default='100', help='Select the thread num')
     parser.add_argument('-c', dest='dic', help='Select the dictionary')
+    parser.add_argument('-w', dest='url', help='Test for waf (linux only)')
     res = parser.parse_args()
     start = time.time()
 
@@ -72,6 +74,9 @@ if __name__ == '__main__':
         if not res.domain:
             exit('Missing domain or ip')
         AliveDetector(res.domain)
+
+    if res.url:
+        os.system('wafw00f ' + res.url)
 
     end = time.time()
     print(f'[Use time] {end - start}')
